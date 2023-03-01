@@ -95,7 +95,45 @@ function RenderLandingPage(props) {
       </div>
       <div>
         {/* Bottom Section: Add code here for the graphs section for your first ticket */}
-        {/* <div className="bottom-section">*/}
+        <div className="bottom-section">
+          <h2 className="bottom-section__header">
+            Systematic Disparity Insights
+          </h2>
+          <div className="bottom-section__content">
+            <div className="bottom-section__container">
+              <h3 className="bottom-section__container--heading">36%</h3>
+              <p className="bottom-section__container--text">
+                By the end of the Trump administration, the average asylum
+                office grant rate had fallen by 36 percent from an average of 44
+                percent in fiscal year 2016 to 28 percent in fiscal year 2020.
+              </p>
+            </div>
+            <div className="bottom-section__container">
+              <h3 className="bottom-section__container--heading">5%</h3>
+              <p className="bottom-section__container--text">
+                The New York asylum office grant rate dropped to 5 percent in
+                fiscal year 2020.
+              </p>
+            </div>
+            <div className="bottom-section__container">
+              <h3 className="bottom-section__container--heading">6x Lower</h3>
+              <p className="bottom-section__container--text">
+                Between fiscal year 2017 and 2020, the New York asylum office's
+                average grant rate was six times lower than the San Fransisco
+                asylum office.
+              </p>
+            </div>
+          </div>
+
+          <Button
+            type="default"
+            style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            onClick={() => console.log('reading more (???)')}
+          >
+            Read More
+          </Button>
+        </div>
+
         <p onClick={() => scrollToTop()} className="back-to-top">
           Back To Top ^
         </p>
