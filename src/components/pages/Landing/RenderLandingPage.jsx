@@ -68,6 +68,13 @@ function RenderLandingPage(props) {
         >
           View the Data
         </Button>
+        <Button
+          type="default"
+          style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+          onClick={() => console.log('downloading data (???)')}
+        >
+          Download the Data
+        </Button>
       </div>
 
       <div className="middle-section">
