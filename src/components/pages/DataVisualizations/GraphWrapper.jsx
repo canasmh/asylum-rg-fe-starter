@@ -10,7 +10,6 @@ import YearLimitsSelect from './YearLimitsSelect';
 import ViewSelect from './ViewSelect';
 import axios from 'axios';
 import { resetVisualizationQuery } from '../../../state/actionCreators';
-import test_data from '../../../data/test_data.json';
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
@@ -73,38 +72,27 @@ function GraphWrapper(props) {
     
     */
 
-    if (office === 'all' || !office) {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
+    const params = {
+      from: years[0],
+      to: years[1],
+    };
+
+    if (office === 'all' || office !== undefined) params.office = office;
+    const endpoint =
+      view === 'citizenship'
+        ? `${process.env.REACT_APP_API_URI}/cases/citizenshipSummary`
+        : `${process.env.REACT_APP_API_URI}/cases/fiscalSummary`;
+    axios
+      .get(endpoint, {
+        // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+        params,
+      })
+      .then(result => {
+        stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
