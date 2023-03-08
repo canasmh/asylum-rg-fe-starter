@@ -89,11 +89,9 @@ function GraphWrapper(props) {
         params,
       })
       .then(result => {
-        console.log('success');
         stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
       })
       .catch(err => {
-        console.log('caught an error');
         console.error(err);
       });
   }
