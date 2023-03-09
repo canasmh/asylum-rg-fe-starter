@@ -77,11 +77,13 @@ function GraphWrapper(props) {
       to: years[1],
     };
 
-    if (office === 'all' || office !== undefined) params.office = office;
+    if (!(office === 'all' || office === undefined)) params.office = office;
+
     const endpoint =
       view === 'citizenship'
         ? `${process.env.REACT_APP_API_URI}/cases/citizenshipSummary`
         : `${process.env.REACT_APP_API_URI}/cases/fiscalSummary`;
+
     axios
       .get(endpoint, {
         // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
